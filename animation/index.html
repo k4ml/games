@@ -25,19 +25,19 @@
     </div>
 </div>
 <div id="control">
-<button id='stop' onclick="doStop()">Stop</button>
-<button id='cont' onclick="doContinue()">Continue</button>
-<button id='start' onclick="doStart()">Start</button>
+<button id='stop' onclick="goLeft()">Left</button>
+<button id='cont' onclick="goCenter()">Center</button>
+<button id='start' onclick="goRight()">Right</button>
 </div>
 <script>
 var sprite = null;
 var stop = false;
+var miles = 5;
 function doMove() {
     if (stop) {
         return;
     }
-    sprite.style.left = parseInt(sprite.style.left)+1+'px';
-    window.requestAnimationFrame(doMove);
+    sprite.style.left = parseInt(sprite.style.left)+miles+'px';
 }
 
 function init() {
@@ -45,20 +45,18 @@ function init() {
     sprite.style.left = '0px';
 }
 
-function doStop() {
-    stop = true;
+function goCenter() {
     console.log(stop);
 }
 
-function doStart() {
-    stop = false;
-    sprite.style.left = '0px';
-    doMove();
+function goLeft() {
+    miles = -5;
+    window.requestAnimationFrame(doMove);
 }
 
-function doContinue() {
-    stop = false;
-    doMove();
+function goRight() {
+    miles = 5;
+    window.requestAnimationFrame(doMove);
 }
 window.onload = init;
 </script>
