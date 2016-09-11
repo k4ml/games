@@ -13,6 +13,8 @@
 hello
 </div>
 <button id='stop' onclick="doStop()">Stop</button>
+<button id='cont' onclick="doContinue()">Continue</button>
+<button id='start' onclick="doStart()">Start</button>
 <script>
 var box = null;
 var stop = false;
@@ -33,6 +35,17 @@ function init() {
 function doStop() {
     stop = true;
     console.log(stop);
+}
+
+function doStart() {
+    stop = false;
+    box.style.marginLeft = '0px';
+    doMove();
+}
+
+function doContinue() {
+    stop = false;
+    doMove();
 }
 window.onload = init;
 </script>
