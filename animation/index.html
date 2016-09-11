@@ -1,15 +1,40 @@
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.box {
+#box {
     background: red;
-    width: 10px;
+    width: 2em;
 }
 </style>
 </head>
 <body>
-<div class="box">
-
+<div id="box">
+hello
 </div>
+<button id='stop' onclick="doStop()">Stop</button>
+<script>
+var box = null;
+var stop = false;
+function doMove() {
+    if (stop) {
+        return;
+    }
+    box.style.marginLeft = parseInt(box.style.marginLeft)+1+'px';
+    setTimeout(doMove, 20);
+}
+
+function init() {
+    box = document.getElementById('box');
+    box.style.marginLeft = '0px';
+    doMove();
+}
+
+function doStop() {
+    stop = true;
+    console.log(stop);
+}
+window.onload = init;
+</script>
 </body>
 </html>
