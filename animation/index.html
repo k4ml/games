@@ -2,34 +2,47 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-#box {
+#viewport {
+    position: relative;
+    height: 100px;
+}
+
+#control {
+    position: relative;
+}
+
+#sprite {
     background: red;
     width: 2em;
+    position: absolute;
 }
 </style>
 </head>
 <body>
-<div id="box">
-hello
+<div id="viewport">
+    <div id="sprite">
+        hello
+    </div>
 </div>
+<div id="control">
 <button id='stop' onclick="doStop()">Stop</button>
 <button id='cont' onclick="doContinue()">Continue</button>
 <button id='start' onclick="doStart()">Start</button>
+</div>
 <script>
-var box = null;
+var sprite = null;
 var stop = false;
 function doMove() {
     if (stop) {
         return;
     }
-    box.style.marginLeft = parseInt(box.style.marginLeft)+1+'px';
+    sprite.style.left = parseInt(sprite.style.left)+1+'px';
     window.requestAnimationFrame(doMove);
 }
 
 function init() {
-    box = document.getElementById('box');
-    box.style.marginLeft = '0px';
-    doMove();
+    sprite = document.getElementById('sprite');
+    sprite.style.left = '0px';
 }
 
 function doStop() {
@@ -39,7 +52,7 @@ function doStop() {
 
 function doStart() {
     stop = false;
-    box.style.marginLeft = '0px';
+    sprite.style.left = '0px';
     doMove();
 }
 
