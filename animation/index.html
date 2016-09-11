@@ -21,7 +21,7 @@ function doMove() {
         return;
     }
     box.style.marginLeft = parseInt(box.style.marginLeft)+1+'px';
-    setTimeout(doMove, 20);
+    window.requestAnimationFrame(doMove);
 }
 
 function init() {
